@@ -6,14 +6,15 @@ from django.shortcuts import render
 # Create your views here.
 def index(request):
     if request.method == 'GET':
-        title = 'Welcome to Mayami! mi güey'
+        title = 'Welcome to Mayami! la Ilma de Cuba'
         return render(request, 'index.html', {'title': title})
     else:
         return HttpResponse("Invalid request method")
 
 def about(request):
     if request.method == 'GET':
-        return render(request, 'about.html')
+        username = 'Gonzalo'
+        return render(request, 'about.html', {'username': username})
     else:
         return HttpResponse("Invalid request method")
 
@@ -25,8 +26,9 @@ def hello(request, id):
 
 def projects(request):
     if request.method == 'GET':
-        projects = list(Project.objects.values())
-        return render(projects, 'projects.html')
+        #projects = list(Project.objects.values())
+        projects = Project.objects.all()
+        return render(request, 'projects.html', {'projects': projects})
     else:
         return HttpResponse("Invalid request method")
     
